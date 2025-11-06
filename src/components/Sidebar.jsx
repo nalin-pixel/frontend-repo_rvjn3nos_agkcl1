@@ -1,28 +1,28 @@
 import React from 'react';
+import { ShoppingCart, History, Package, Settings } from 'lucide-react';
 
-const Sidebar = ({ items, activeKey, onSelect }) => {
+const items = [
+  { key: 'cart', icon: ShoppingCart, label: 'Cart' },
+  { key: 'history', icon: History, label: 'History' },
+  { key: 'products', icon: Package, label: 'Products' },
+  { key: 'settings', icon: Settings, label: 'Settings' },
+];
+
+export default function Sidebar({ active, onChange }) {
   return (
-    <aside className="w-16 shrink-0 border-r border-slate-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-      <nav className="p-2 space-y-1 overflow-auto max-h-[calc(100vh-48px)]">
-        {items.map((item) => (
-          <button
-            key={item.key}
-            onClick={() => onSelect(item.key)}
-            title={item.label}
-            aria-label={item.label}
-            className={
-              'w-full aspect-square grid place-items-center rounded-md transition-colors ' +
-              (activeKey === item.key
-                ? 'bg-indigo-600 text-white shadow'
-                : 'text-slate-600 hover:bg-slate-100')
-            }
-          >
-            {item.icon}
-          </button>
-        ))}
-      </nav>
+    <aside className="fixed left-0 top-0 h-screen w-16 bg-white/80 backdrop-blur border-r border-gray-200 flex flex-col items-center py-4 gap-3">
+      {items.map(({ key, icon: Icon, label }) => (
+        <button
+          key={key}
+          aria-label={label}
+          onClick={() => onChange(key)}
+          className={`flex items-center justify-center w-10 h-10 rounded-xl transition-colors ${
+            active === key ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-100'
+          }`}
+        >
+          <Icon size={20} />
+        </button>
+      ))}
     </aside>
   );
-};
-
-export default Sidebar;
+}
