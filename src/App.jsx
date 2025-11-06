@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
-import Hero from './components/Hero';
 import ContentSwitcher from './components/ContentSwitcher';
 import { Plus } from 'lucide-react';
 
@@ -20,11 +19,8 @@ export default function App() {
 
       {/* Main content area shifted for sidebar */}
       <main className="pl-16">
-        <div className="max-w-7xl mx-auto p-6 space-y-6">
-          {/* Hero with Spline */}
-          <Hero />
-
-          {/* POS views */}
+        <div className="max-w-7xl mx-auto p-6">
+          {/* POS views only (hero removed) */}
           <ContentSwitcher active={active} />
         </div>
       </main>
