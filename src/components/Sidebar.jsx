@@ -1,11 +1,16 @@
 import React from 'react';
-import { ShoppingCart, History, Package, Settings } from 'lucide-react';
+import { ShoppingCart, Package, History, Truck, Users, Building2, CreditCard, Receipt, Wallet } from 'lucide-react';
 
 const items = [
   { key: 'cart', icon: ShoppingCart, label: 'Cart' },
+  { key: 'item', icon: Package, label: 'Item' },
   { key: 'history', icon: History, label: 'History' },
-  { key: 'products', icon: Package, label: 'Products' },
-  { key: 'settings', icon: Settings, label: 'Settings' },
+  { key: 'incoming', icon: Truck, label: 'Incoming Item' },
+  { key: 'member', icon: Users, label: 'Member' },
+  { key: 'supplier', icon: Building2, label: 'Supplier' },
+  { key: 'credit', icon: CreditCard, label: 'Credit' },
+  { key: 'spending', icon: Receipt, label: 'Spending' },
+  { key: 'receivable', icon: Wallet, label: 'Receivable' },
 ];
 
 export default function Sidebar({ active, onChange }) {
@@ -19,6 +24,7 @@ export default function Sidebar({ active, onChange }) {
           className={`flex items-center justify-center w-10 h-10 rounded-xl transition-colors ${
             active === key ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-100'
           }`}
+          title={label}
         >
           <Icon size={20} />
         </button>

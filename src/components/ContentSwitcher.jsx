@@ -1,34 +1,25 @@
 import React from 'react';
-import CartView from './CartView';
-
-function HistoryView() {
-  return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-6">
-      <div className="text-sm text-gray-500">Recent transactions will appear here.</div>
-    </div>
-  );
-}
-
-function ProductsView() {
-  return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-6">
-      <div className="text-sm text-gray-500">Manage products here.</div>
-    </div>
-  );
-}
-
-function SettingsView() {
-  return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-6">
-      <div className="text-sm text-gray-500">Adjust preferences here.</div>
-    </div>
-  );
-}
+import {
+  CartView,
+  ItemView,
+  HistoryView,
+  IncomingItemView,
+  MemberView,
+  SupplierView,
+  CreditView,
+  SpendingView,
+  ReceivableView,
+} from './POSViews';
 
 export default function ContentSwitcher({ active }) {
   if (active === 'cart') return <CartView />;
+  if (active === 'item') return <ItemView />;
   if (active === 'history') return <HistoryView />;
-  if (active === 'products') return <ProductsView />;
-  if (active === 'settings') return <SettingsView />;
+  if (active === 'incoming') return <IncomingItemView />;
+  if (active === 'member') return <MemberView />;
+  if (active === 'supplier') return <SupplierView />;
+  if (active === 'credit') return <CreditView />;
+  if (active === 'spending') return <SpendingView />;
+  if (active === 'receivable') return <ReceivableView />;
   return null;
 }
