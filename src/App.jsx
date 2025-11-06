@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
+import HeroCover from './components/HeroCover';
 import {
   CartView,
   ItemView,
@@ -12,17 +13,18 @@ import {
   SpendingView,
   ReceivableView,
 } from './components/POSViews';
+import { ShoppingCart, Package, History, Download, Users, Truck, CreditCard, Wallet, Receipt } from 'lucide-react';
 
 const MENU = [
-  { key: 'cart', label: 'Cart' },
-  { key: 'item', label: 'Item' },
-  { key: 'history', label: 'History' },
-  { key: 'incoming', label: 'Incoming Item' },
-  { key: 'member', label: 'Member' },
-  { key: 'supplier', label: 'Supplier' },
-  { key: 'credit', label: 'Credit' },
-  { key: 'spending', label: 'Spending' },
-  { key: 'receivable', label: 'Receivable' },
+  { key: 'cart', label: 'Cart', icon: <ShoppingCart size={18} /> },
+  { key: 'item', label: 'Item', icon: <Package size={18} /> },
+  { key: 'history', label: 'History', icon: <History size={18} /> },
+  { key: 'incoming', label: 'Incoming Item', icon: <Download size={18} /> },
+  { key: 'member', label: 'Member', icon: <Users size={18} /> },
+  { key: 'supplier', label: 'Supplier', icon: <Truck size={18} /> },
+  { key: 'credit', label: 'Credit', icon: <CreditCard size={18} /> },
+  { key: 'spending', label: 'Spending', icon: <Wallet size={18} /> },
+  { key: 'receivable', label: 'Receivable', icon: <Receipt size={18} /> },
 ];
 
 function App() {
@@ -56,6 +58,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-slate-800">
       <Navbar appName="POS App" userName="Alex" />
+      <HeroCover />
 
       <main className="mx-auto max-w-7xl px-4 py-6">
         <div className="flex gap-6">

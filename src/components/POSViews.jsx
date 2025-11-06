@@ -1,17 +1,9 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import Tabs from './Tabs';
 
-function SectionWrapper({ title, showAdd = true, children }) {
+function SectionWrapper({ children }) {
   return (
     <div className="bg-white rounded-lg shadow-sm border border-slate-200">
-      <div className="flex items-center justify-between p-4 border-b border-slate-200">
-        <h2 className="font-semibold text-slate-800">{title}</h2>
-        {showAdd && (
-          <button className="inline-flex items-center gap-2 px-3 py-1.5 text-sm rounded bg-indigo-600 text-white hover:bg-indigo-700">
-            Add
-          </button>
-        )}
-      </div>
       <div className="p-4">{children}</div>
     </div>
   );
@@ -80,15 +72,16 @@ function CartView() {
   };
 
   return (
-    <SectionWrapper title="Cart" showAdd={false}>
+    <SectionWrapper>
       <div className="space-y-4">
+        {/* Tabs above barcode input with add button on the right */}
+        <Tabs tabs={tabs} active={active} onChange={setActive} onAdd={addTab} />
+
         <div className="flex items-center gap-2">
           <input type="text" placeholder="Scan or enter barcode" className="flex-1 px-3 py-2 rounded border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
           <button className="px-3 py-2 rounded bg-indigo-600 text-white hover:bg-indigo-700">Submit</button>
-          <button onClick={addTab} className="ml-auto px-3 py-2 rounded bg-slate-100 text-slate-700 hover:bg-slate-200">New Transaction</button>
         </div>
 
-        <Tabs tabs={tabs} active={active} onChange={setActive} />
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <div className="lg:col-span-2">
             <SimpleTable
@@ -121,7 +114,7 @@ function CartView() {
               <span className="text-slate-600">Change</span>
               <span className="font-semibold">$0.00</span>
             </div>
-            <div className="pt-2 grid grid-cols-3 gap-2">
+            <div className="pt-2 grid grid-cols-1 gap-2">
               <button className="px-3 py-2 rounded bg-slate-100 text-slate-700 hover:bg-slate-200">Cancel</button>
               <button className="px-3 py-2 rounded bg-emerald-600 text-white hover:bg-emerald-700">Save</button>
               <button className="px-3 py-2 rounded bg-indigo-600 text-white hover:bg-indigo-700">Print</button>
@@ -138,7 +131,7 @@ function ItemView() {
     { Barcode: '123456', Name: 'Sample Item', Stock: 10, Unit: 'pcs', Price: 10.0, Status: true },
   ]);
   return (
-    <SectionWrapper title="Item" showAdd>
+    <SectionWrapper>
       <SimpleTable
         headers={["Barcode", "Name", "Stock", "Unit", "Price", "Status"]}
         rows={rows}
@@ -160,7 +153,7 @@ function HistoryView() {
     { 'History ID': 'H-001', 'Transaction Time': '2025-01-01 10:00', Total: '$20.00' },
   ];
   return (
-    <SectionWrapper title="History" showAdd={false}>
+    <SectionWrapper>
       <SimpleTable headers={["History ID", "Transaction Time", "Total"]} rows={rows} />
     </SectionWrapper>
   );
@@ -168,7 +161,7 @@ function HistoryView() {
 
 function IncomingItemView() {
   return (
-    <SectionWrapper title="Incoming Item" showAdd>
+    <SectionWrapper>
       <SimpleTable headers={["Barcode", "Item Name", "Invoice Number", "Date", "Quantity", "Price"]} rows={[]} />
     </SectionWrapper>
   );
@@ -176,7 +169,7 @@ function IncomingItemView() {
 
 function MemberView() {
   return (
-    <SectionWrapper title="Member" showAdd>
+    <SectionWrapper>
       <SimpleTable headers={["NIK", "Name", "Address"]} rows={[]} />
     </SectionWrapper>
   );
@@ -184,7 +177,7 @@ function MemberView() {
 
 function SupplierView() {
   return (
-    <SectionWrapper title="Supplier" showAdd>
+    <SectionWrapper>
       <SimpleTable headers={["Name", "Address", "Phone Number"]} rows={[]} />
     </SectionWrapper>
   );
@@ -192,7 +185,7 @@ function SupplierView() {
 
 function CreditView() {
   return (
-    <SectionWrapper title="Credit" showAdd>
+    <SectionWrapper>
       <SimpleTable headers={["Invoice Number", "Total", "Description", "Debt Date", "Due Date"]} rows={[]} />
     </SectionWrapper>
   );
@@ -200,7 +193,7 @@ function CreditView() {
 
 function SpendingView() {
   return (
-    <SectionWrapper title="Spending" showAdd>
+    <SectionWrapper>
       <SimpleTable headers={["Date", "Name", "Description", "Total"]} rows={[]} />
     </SectionWrapper>
   );
@@ -208,7 +201,7 @@ function SpendingView() {
 
 function ReceivableView() {
   return (
-    <SectionWrapper title="Receivable" showAdd>
+    <SectionWrapper>
       <SimpleTable headers={["Receivable Date", "Person/Institution", "Description", "Total"]} rows={[]} />
     </SectionWrapper>
   );

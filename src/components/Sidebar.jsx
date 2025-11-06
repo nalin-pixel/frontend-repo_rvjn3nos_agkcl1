@@ -2,23 +2,22 @@ import React from 'react';
 
 const Sidebar = ({ items, activeKey, onSelect }) => {
   return (
-    <aside className="w-64 shrink-0 border-r border-slate-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-      <div className="px-4 py-4 border-b border-slate-200">
-        <h2 className="text-sm font-semibold text-slate-700">Menu</h2>
-      </div>
-      <nav className="p-2 space-y-1 overflow-auto max-h-[calc(100vh-64px)]">
+    <aside className="w-16 shrink-0 border-r border-slate-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+      <nav className="p-2 space-y-1 overflow-auto max-h-[calc(100vh-48px)]">
         {items.map((item) => (
           <button
             key={item.key}
             onClick={() => onSelect(item.key)}
+            title={item.label}
+            aria-label={item.label}
             className={
-              'w-full text-left px-3 py-2 rounded-md text-sm transition-colors ' +
+              'w-full aspect-square grid place-items-center rounded-md transition-colors ' +
               (activeKey === item.key
-                ? 'bg-indigo-600 text-white'
-                : 'text-slate-700 hover:bg-slate-100')
+                ? 'bg-indigo-600 text-white shadow'
+                : 'text-slate-600 hover:bg-slate-100')
             }
           >
-            {item.label}
+            {item.icon}
           </button>
         ))}
       </nav>
